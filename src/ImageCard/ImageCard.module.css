@@ -1,0 +1,10 @@
+.card {
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}

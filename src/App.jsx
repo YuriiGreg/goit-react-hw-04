@@ -23,12 +23,13 @@ const App = () => {
     const URL = `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=${API_KEY}`;
 
     setLoading(true);
+    setError(null);
 
     try {
       const { data } = await axios.get(URL);
       setImages(prevImages => [...prevImages, ...data.results]);
     } catch (error) {
-      setError(error.message);
+      setError('Something went wrong. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -64,10 +65,15 @@ const App = () => {
   return (
     <div className={styles.app}>
       <SearchBar onSubmit={handleSearch} />
-      {error && <ErrorMessage message={error} />}
-      <ImageGallery images={images} onImageClick={handleImageClick} />
-      {loading && <Loader />}
-      {images.length > 0 && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
+      {error ? (
+        <ErrorMessage message={error} />
+      ) : (
+        <>
+          <ImageGallery images={images} onImageClick={handleImageClick} />
+          {loading && <Loader />}
+          {images.length > 0 && !loading && <LoadMoreBtn onClick={handleLoadMore} />}
+        </>
+      )}
       {showModal && (
         <ImageModal
           isOpen={showModal}
@@ -81,4 +87,7 @@ const App = () => {
 };
 
 export default App;
+
+
+
 

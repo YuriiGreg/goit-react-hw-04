@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import SearchBar from './SearchBar/SearchBar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import Loader from './Loader/Loader';
-import ErrorMessage from './ErrorMessage/ErrorMessage';
-import LoadMoreBtn from './LoadMoreBtn/LoadMoreBtn';
-import ImageModal from './ImageModal/ImageModal';
+import SearchBar from './components/SearchBar/SearchBar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import Loader from './components/Loader/Loader';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
+import ImageModal from './components/ImageModal/ImageModal';
 import styles from './App.module.css';
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const fetchImages = async (query, page) => {
-    const API_KEY = 'YOUR_UNSPLASH_API_KEY';
+    const API_KEY = 'nrw8IMVpZJH62hZEidpomIb5xjo2tuu3r8nqtD3MsNs';
     const URL = `https://api.unsplash.com/search/photos?query=${query}&page=${page}&client_id=${API_KEY}`;
 
     setLoading(true);
